@@ -138,9 +138,6 @@ var main = function (input) {
   }
   console.log("The current game mode is ", currentGameMode);
   if (currentGameMode == `sps normal mode`) {
-    // increase the number of games played by 1
-    numGamesPlayed += 1;
-
     console.log("The current game is ", currentGameMode);
     console.log("The current number of games played is:", numGamesPlayed);
 
@@ -159,11 +156,13 @@ var main = function (input) {
     ) {
       return `Please type in scissors, paper or stone to play the game`;
     }
+    // increase the number of games played by 1 if input is correct
+    numGamesPlayed += 1;
     // Check if the game results in a draw
     if (drawCondition(playerThrows, computerPlayed)) {
       numGamesDrawn += 1;
       var currentWinRate = getWinRateInfo();
-      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> It's a draw! 🤝 <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
+      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> It's a draw! 🤝 <br> Please input scissors, paper, and stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
     }
 
     // Check if the game results in the user winning
@@ -171,18 +170,16 @@ var main = function (input) {
       numGamesWon += 1;
       console.log("Your current number of games won is:", numGamesWon);
       currentWinRate = getWinRateInfo();
-      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You won! Congratulations! 🎉 <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
+      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You won! Congratulations! 🎉 <br> Please input scissors, paper, and stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
     }
     // If it's neither a win nor a draw, it's a loss.
     else numGamesLost += 1;
     currentWinRate = getWinRateInfo();
-    return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You lost! 😭  <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing!  Better luck next time! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
+    return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You lost! 😭  Better luck next time! <br> Please input scissors, paper, and stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
   }
 
   // Check if the user chooses the reverse mode, and define the game logic
   if (currentGameMode == `sps reverse mode`) {
-    // increase the number of games played by 1
-    numGamesPlayed += 1;
     console.log("The current game is ", currentGameMode);
     console.log("The current number of games played is:", numGamesPlayed);
 
@@ -202,20 +199,25 @@ var main = function (input) {
     ) {
       return `Please type in reversed scissors, reversed paper or reversed stone to play the game`;
     }
+    // increase the number of games played by 1 if input is correct
+    numGamesPlayed += 1;
     // Check if the game results in a draw
     if (drawCondition(playerThrows, computerPlayed)) {
       numGamesDrawn += 1;
+      currentWinRate = getWinRateInfo();
       return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> It's a draw! 🤝 <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
     }
 
     // Check if the game results in the user winning
     else if (winConditionReverseMode(playerThrows, computerPlayed)) {
       numGamesWon += 1;
+      currentWinRate = getWinRateInfo();
       console.log("Your current number of games won is:", numGamesWon);
       return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You won! Congratulations! 🎉  <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
     }
     // If it's neither a win or a draw, then it's a loss.
     else numGamesLost += 1;
+    currentWinRate = getWinRateInfo();
     return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> You lost! 😭  Better luck next time! <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
   }
 };
