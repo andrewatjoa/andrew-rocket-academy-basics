@@ -163,7 +163,7 @@ var main = function (input) {
     if (drawCondition(playerThrows, computerPlayed)) {
       numGamesDrawn += 1;
       var currentWinRate = getWinRateInfo();
-      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br>s It's a draw! 🤝 <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
+      return `${userName} threw: ${playerThrows} ${playerEmoji} <br> Computer played: ${computerPlayed} ${computerEmoji} <br><br> It's a draw! 🤝 <br> Please input reversed paper, reversed scissors, and reversed stone to continue playing! <br><br> Your current win/loss record is: <br> ${userName} won: ${numGamesWon} times. <br> Computer won:  ${numGamesLost} times. <br> You both drew: ${numGamesDrawn} times. <br> ${currentWinRate}`;
     }
 
     // Check if the game results in the user winning
